@@ -66,10 +66,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . f f f . . . f f . . 
         `)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.portails, function (sprite, otherSprite) {
-    game.gameOver(true)
-    game.setGameOverEffect(true, effects.confetti)
-})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     Dic_taDor.setImage(img`
         . . . . . . . . . . . . . 
@@ -89,6 +85,10 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         . . e f f f f f f f e e . 
         . . . f f f . . . . . . . 
         `)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.portails, function (sprite2, otherSprite2) {
+    game.gameOver(true)
+    game.setGameOverEffect(true, effects.confetti)
 })
 let Next_Level: Sprite = null
 let Dic_taDor: Sprite = null
@@ -129,7 +129,7 @@ for (let value of tiles.getTilesByType(assets.tile`myTile`)) {
     tiles.placeOnTile(Next_Level, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
-for (let value of tiles.getTilesByType(assets.tile`myTile0`)) {
+for (let value2 of tiles.getTilesByType(assets.tile`myTile0`)) {
     Next_Level = sprites.create(img`
         . . 1 1 1 . . . 
         . 1 a a a 1 . . 
@@ -140,9 +140,9 @@ for (let value of tiles.getTilesByType(assets.tile`myTile0`)) {
         . 9 f f f 9 . . 
         . . 9 9 9 . . . 
         `, SpriteKind.portails)
-    tiles.placeOnTile(Next_Level, value)
-    tiles.setTileAt(value, assets.tile`transparency16`)
+    tiles.placeOnTile(Next_Level, value2)
+    tiles.setTileAt(value2, assets.tile`transparency16`)
 }
 forever(function () {
-    music.play(music.createSong(hex`00b4000408020301001c000f05001202c102c2010004050028000000640028000314000602000430000c001000011b14001800011918001c00012a1c002000012024002800011e2c003000012234003800012238003c00011b02001c000c960064006d019001000478002c010000640032000000000a0600051e000000040001240c001000011e14001800011b18001c0001241c002000011905001c000f0a006400f4010a000004000000000000000000000000000000000236000000040001270c001000012214001800011e18001c0001271c002000011d2400280001222c003000012534003800012538003c00011e`), music.PlaybackMode.UntilDone)
+    music.play(music.stringPlayable("C5 G E G C5 B D B ", 211), music.PlaybackMode.UntilDone)
 })
